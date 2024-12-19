@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback o Retroalimentación</title>
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/button-start.css">
+    <link rel="stylesheet" href="css/card-pregunta.css">
+    <link rel="stylesheet" href="css/pregunta-principal.css">
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Barra de progreso -->
+    <div id="progress-bar-container" style="display: none;">
+        <div class="progress">
+            <div class="percent"></div>
+        </div>
+        <div class="steps">
+            <div class="step" id="0"></div>
+            <div class="step" id="1"></div>
+            <div class="step" id="2"></div>
+            <div class="step" id="3"></div>
+            <div class="step" id="4"></div>
+            <div class="step" id="5"></div>
+            <div class="step" id="6"></div>
+            <div class="step" id="7"></div>
+            <div class="step" id="8"></div>
+            <div class="step" id="9"></div>
+            <div class="step" id="10"></div>
+        </div>
+    </div>
+
+    <!-- Contador -->
+    <div id="contador" class="contador text-focus-in">
+    </div>
+
+    <!-- Botón para mutear -->
+    <button id="mute-button" class="mute-button hidden">
+        <img id="mute-icon" src="img/unmute-icon.png" alt="Mute Icon">
+    </button>
+
+    <div id="container-moving" class="moving hidden">
+        <button id="back" class="hidden">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <button id="forward" class="hidden">
+            <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <audio id="audio_fondo" autoplay loop muted>
+        <source src="audios/fondo.mp3" type="audio/mpeg">
+        Tu navegador no soporta el audio.
+    </audio>
+
+    <div id="background-image">
+        <!-- Pantalla de inicio -->
+        <div id="start-screen" class="screen hidden">
+            <h1 style="color: white;font-size: calc(2vw + 2vh);">Curso de FEEDBACK</h1>
+            <button id="start-button" class="button-start">
+                <div class="bg"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 342 208" height="208" width="342"
+                    class="splash">
+                    <path stroke-linecap="round" stroke-width="3"
+                        d="M54.1054 99.7837C54.1054 99.7837 40.0984 90.7874 26.6893 97.6362C13.2802 104.485 1.5 97.6362 1.5 97.6362">
+                    </path>
+                    <path stroke-linecap="round" stroke-width="3"
+                        d="M285.273 99.7841C285.273 99.7841 299.28 90.7879 312.689 97.6367C326.098 104.486 340.105 95.4893 340.105 95.4893">
+                    </path>
+                    <path stroke-linecap="round" stroke-width="3" stroke-opacity="0.3"
+                        d="M281.133 64.9917C281.133 64.9917 287.96 49.8089 302.934 48.2295C317.908 46.6501 319.712 36.5272 319.712 36.5272">
+                    </path>
+                    <path stroke-linecap="round" stroke-width="3" stroke-opacity="0.3"
+                        d="M281.133 138.984C281.133 138.984 287.96 154.167 302.934 155.746C317.908 157.326 319.712 167.449 319.712 167.449">
+                    </path>
+                    <path stroke-linecap="round" stroke-width="3"
+                        d="M230.578 57.4476C230.578 57.4476 225.785 41.5051 236.061 30.4998C246.337 19.4945 244.686 12.9998 244.686 12.9998">
+                    </path>
+                    <path stroke-linecap="round" stroke-width="3"
+                        d="M230.578 150.528C230.578 150.528 225.785 166.471 236.061 177.476C246.337 188.481 244.686 194.976 244.686 194.976">
+                    </path>
+                    <path stroke-linecap="round" stroke-width="3" stroke-opacity="0.3"
+                        d="M170.392 57.0278C170.392 57.0278 173.89 42.1322 169.571 29.54C165.252 16.9478 168.751 2.05227 168.751 2.05227">
+                    </path>
+                    <path stroke-linecap="round" stroke-width="3" stroke-opacity="0.3"
+                        d="M170.392 150.948C170.392 150.948 173.89 165.844 169.571 178.436C165.252 191.028 168.751 205.924 168.751 205.924">
+                    </path>
+                    <path stroke-linecap="round" stroke-width="3"
+                        d="M112.609 57.4476C112.609 57.4476 117.401 41.5051 107.125 30.4998C96.8492 19.4945 98.5 12.9998 98.5 12.9998">
+                    </path>
+                    <path stroke-linecap="round" stroke-width="3"
+                        d="M112.609 150.528C112.609 150.528 117.401 166.471 107.125 177.476C96.8492 188.481 98.5 194.976 98.5 194.976">
+                    </path>
+                    <path stroke-linecap="round" stroke-width="3" stroke-opacity="0.3"
+                        d="M62.2941 64.9917C62.2941 64.9917 55.4671 49.8089 40.4932 48.2295C25.5194 46.6501 23.7159 36.5272 23.7159 36.5272">
+                    </path>
+                    <path stroke-linecap="round" stroke-width="3" stroke-opacity="0.3"
+                        d="M62.2941 145.984C62.2941 145.984 55.4671 161.167 40.4932 162.746C25.5194 164.326 23.7159 174.449 23.7159 174.449">
+                    </path>
+                </svg>
+
+                <div class="wrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 221 42" height="42" width="221"
+                        class="path">
+                        <path stroke-linecap="round" stroke-width="3"
+                            d="M182.674 2H203C211.837 2 219 9.16344 219 18V24C219 32.8366 211.837 40 203 40H18C9.16345 40 2 32.8366 2 24V18C2 9.16344 9.16344 2 18 2H47.8855">
+                        </path>
+                    </svg>
+
+                    <div class="outline"></div>
+                    <div class="content-start">
+                        <span class="char state-1">
+                            <span data-label="C" style="--i: 1">C</span>
+                            <span data-label="O" style="--i: 2">O</span>
+                            <span data-label="M" style="--i: 3">M</span>
+                            <span data-label="E" style="--i: 4">E</span>
+                            <span data-label="N" style="--i: 5">N</span>
+                            <span data-label="C" style="--i: 6">C</span>
+                            <span data-label="E" style="--i: 7">E</span>
+                            <span data-label="M" style="--i: 8">M</span>
+                            <span data-label="O" style="--i: 9">O</span>
+                            <span data-label="S" style="--i: 10">S</span>
+                        </span>
+
+                        <div class="icon">
+                            <div></div>
+                        </div>
+
+                        <span class="char state-2">
+                        </span>
+                    </div>
+                </div>
+            </button>
+            <p class="texto_principal"
+                style="position: absolute;bottom: 0rem;color: white;text-align: center;font-size: 1.2rem;font-weight: 100;margin: 1.5rem;">
+                Este curso te proporcionará las herramientas y habilidades para dar y recibir feedback
+                constructivo, promoviendo un ambiente de respeto y crecimiento mutuo en la empresa.</p>
+        </div>
+
+    </div>
+
+    <div class="background">
+        <video autoplay muted loop class="background-video">
+            <source src="videos/fondo.mp4" type="video/mp4">
+            Tu navegador no soporta el video.
+        </video>
+    </div>
+
+
+    <!-- Notificación -->
+    <div id="notification" class="notification"></div>
+
+
+    <!-- Video 01 -->
+    <div id="video-screen-01" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-video-01" class="course-video">
+            <source src="videos/video01.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+    <!-- Interactivo 01 -->
+    <div id="interactive-screen-01" class="screen hidden" style="height: 89%;">
+        <audio id="audioQuestion01" src="audios/audio01.mp3"></audio>
+        <audio id="audioRespuesta01" src="audios/respuesta01.mp3"></audio>
+        <div class="container-pregunta noselect">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+                <div id="card-pregunta">
+                    <h2 class="text-focus-in" style="margin-top: 2rem;">¿Te has puesto a pensar qué elementos te
+                        ayudarían a
+                        potenciarte?
+                    </h2>
+                    <p class="text-focus-in">Selecciona una opción para continuar:</p>
+                </div>
+            </div>
+        </div>
+        <div class="opciones"> <!-- se puede reemplazar por fade-in-up-->
+            <!-- en Styles.css el animation tmb funciona-->
+            <button class="option-button-01 scale-in-center button-opciones slide-in-left">Sí, creo que la
+                retroalimentación
+                constructiva 🧠 me puede ayudar a mejorar.</button>
+            <button class="option-button-01 scale-in-center button-opciones slide-in-right">No lo había considerado,
+                pero estoy abierto
+                a
+                nuevas ideas 💡.</button>
+        </div>
+    </div>
+
+    <!-- Video 02 -->
+    <div id="video-screen-02" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-video-02" class="course-video">
+            <source src="videos/video02.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+    <!-- Interactivo 02 -->
+    <div id="interactive-screen-02" class="screen hidden">
+        <audio id="audioQuestion02" src="audios/audio02.mp3"></audio>
+        <audio id="audioRespuesta02" src="audios/respuesta02.mp3"></audio>
+        <div class="container-pregunta noselect">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+                <div id="card-pregunta">
+                    <h2 class="text-focus-in" style="margin-top: 2rem;">¿Has notado qué palabras, sensaciones o ideas te
+                        vienen a la mente al escuchar que alguien te dará retroalimentación o feedback?
+                    </h2>
+                    <p class="text-focus-in">Selecciona una opción para continuar:</p>
+                </div>
+            </div>
+        </div>
+        <div class="opciones">
+            <button class="option-button-02 scale-in-center button-opciones-azul slide-in-left">Me siento emocionado 😄
+                y listo para
+                aprender, ¡la retroalimentación siempre es una oportunidad para mejorar! 🚀</button>
+            <button class="option-button-02 scale-in-center button-opciones-azul slide-in-right">¡Genial! 💡 La
+                retroalimentación
+                constructiva me motiva a crecer y a superar mis límites 💪.</button>
+        </div>
+    </div>
+
+    <!-- Interactivo 03 -->
+    <div id="interactive-screen-03" class="screen hidden">
+        <audio id="audioQuestion03" src="audios/audio03.mp3"></audio>
+        <audio id="audioRespuesta03" src="audios/respuesta03.mp3"></audio>
+        <div class="container-pregunta noselect">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+                <div id="card-pregunta">
+                    <h2 class="text-focus-in" style="margin-top: 2rem;">Elige lo que resuene contigo y dale forma a tu
+                        proceso. ¿Qué sensaciones o emociones te impulsan a avanzar?</h2>
+                    <p class="text-focus-in">Selecciona tres opciones para continuar:</p>
+                </div>
+            </div>
+        </div>
+        <div class="opciones">
+            <button class="option-button-03 scale-in-center button-opciones-azul">Motivación</button>
+            <button class="option-button-03 scale-in-center button-opciones-azul">Felicidad</button>
+            <button class="option-button-03 scale-in-center button-opciones-azul">Aceptación</button>
+            <button class="option-button-03 scale-in-center button-opciones-azul">Esperanza</button>
+            <button class="option-button-03 scale-in-center button-opciones-azul">Ilusión</button>
+            <button class="option-button-03 scale-in-center button-opciones-azul">Agradecimiento</button>
+            <button class="option-button-03 scale-in-center button-opciones-azul">Esfuerzo</button>
+            <button class="option-button-03 scale-in-center button-opciones-azul">Angustia</button>
+            <button class="option-button-03 scale-in-center button-opciones-azul">Miedo</button>
+            <button class="option-button-03 scale-in-center button-opciones-azul">Ansiedad</button>
+        </div>
+    </div>
+
+
+    <!-- Interactivo 04 -->
+    <div id="interactive-screen-04" class="screen hidden">
+        <audio id="audioQuestion04" src="audios/audio04.mp3"></audio>
+        <audio id="audioRespuesta04" src="audios/respuesta04.mp3"></audio>
+        <div class="container-pregunta noselect">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+                <div id="card-pregunta">
+                    <h2 class="text-focus-in" style="margin-top: 2rem;">El poder de una frase puede inspirarte a crecer.
+                        ¿Cuál resuena contigo y te impulsa a dar lo mejor de ti?</h2>
+                    <p class="text-focus-in">Selecciona una opción para continuar:</p>
+                </div>
+            </div>
+        </div>
+        <div class="opciones">
+            <button class="option-button-04 scale-in-center button-opciones-azul slide-in-left">Me ayudará a
+                crecer</button>
+            <button class="option-button-04 scale-in-center button-opciones-azul">Me aportará a mi proceso de
+                desarrollo</button>
+            <button class="option-button-04 scale-in-center button-opciones-azul slide-in-right">Sé que será
+                motivador</button>
+        </div>
+    </div>
+
+
+    <!-- Interactivo 05 -->
+    <div id="interactive-screen-05" class="screen hidden">
+        <audio id="audioQuestion05" src="audios/audio05.mp3"></audio>
+        <audio id="audioRespuesta05" src="audios/respuesta05.mp3"></audio>
+        <div class="container-pregunta noselect">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+                <div id="card-pregunta">
+                    <h2 class="text-focus-in" style="margin-top: 2rem;">Las preguntas correctas abren puertas a nuevas
+                        perspectivas. ¿Cuál te invita a explorar más sobre ti mismo y tu crecimiento?</h2>
+                    <p class="text-focus-in">Selecciona una opción para continuar:</p>
+                </div>
+            </div>
+        </div>
+        <div class="opciones">
+            <button class="option-button-05 scale-in-center button-opciones-azul slide-in-left">¿Será
+                motivador?</button>
+            <button class="option-button-05 scale-in-center button-opciones-azul">¿Me halagarán?</button>
+            <button class="option-button-05 scale-in-center button-opciones-azul slide-in-right">¿Qué más me dirán sobre
+                mi proceso o
+                avance?</button>
+        </div>
+    </div>
+
+    <!-- Video 03 -->
+    <div id="video-screen-03" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-video-03" class="course-video">
+            <source src="videos/video03.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+    <!-- Interactivo 06 -->
+    <div id="interactive-screen-06" class="screen hidden">
+        <audio id="audioQuestion06" src="audios/audio06.mp3"></audio>
+        <audio id="audioRespuesta06" src="audios/respuesta06.mp3"></audio>
+        <div class="container-pregunta noselect">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+                <div id="card-pregunta">
+                    <h2 class="text-focus-in">El primer paso hacia el crecimiento está a tu alcance. ¿Qué necesitas para
+                        abrir esa puerta y comenzar tu nueva aventura?</h2>
+                </div>
+            </div>
+        </div>
+        <div class="opciones">
+            <button class="option-button-06 scale-in-center button-opciones-azul slide-in-left">¡Estoy listo para
+                empezar! 🚀</button>
+        </div>
+    </div>
+
+    <!-- Interactivo 07 -->
+    <div id="interactive-screen-07" class="screen hidden">
+        <audio id="audioQuestion07" src="audios/audio07.mp3"></audio>
+        <audio id="audioRespuesta07" src="audios/respuesta07.mp3"></audio>
+        <div class="container-pregunta noselect">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+                <div id="card-pregunta">
+                    <h2 class="text-focus-in">Las personas que te rodean pueden ser grandes aliados en tu crecimiento.
+                        ¿Quiénes te inspiran y te ofrecen el apoyo necesario para seguir avanzando?</h2>
+                </div>
+            </div>
+        </div>
+        <div class="opciones">
+            <button class="option-button-07 scale-in-center button-opciones-azul slide-in-left">Mis mentores y colegas
+                de confianza
+                🌟</button>
+        </div>
+    </div>
+
+    <!-- Interactivo 08 -->
+    <div id="interactive-screen-08" class="screen hidden">
+        <audio id="audioQuestion08" src="audios/audio08.mp3"></audio>
+        <audio id="audioRespuesta08" src="audios/respuesta08.mp3"></audio>
+        <div class="container-pregunta noselect">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+                <div id="card-pregunta">
+                    <h2 class="text-focus-in">Ser parte de un proceso de feedback requiere compromiso y apertura. ¿Qué
+                        pautas crees que te ayudarían a aprovechar al máximo esta experiencia?</h2>
+                </div>
+            </div>
+        </div>
+        <div class="opciones">
+            <button class="option-button-08 scale-in-center button-opciones-azul slide-in-left">Apertura, honestidad y
+                respeto
+                🤝</button>
+        </div>
+    </div>
+
+    <!-- Interactivo 09 -->
+    <div id="interactive-screen-09" class="screen hidden">
+        <audio id="audioQuestion09" src="audios/audio09.mp3"></audio>
+        <audio id="audioRespuesta09" src="audios/respuesta09.mp3"></audio>
+        <div class="main">
+            <h1 class="title text-focus-in">¿ESTÁS LISTO PARA<div class="roller">
+                    <span id="rolltext">APRENDER<br />
+                        A DAR<br />
+                        UN BUEN<br />
+                        <span id="spare-time"> FEEDBACK?</span><br />
+                </div>
+            </h1>
+        </div>
+        <div class="opciones">
+            <button class="option-button-09 scale-in-center button-opciones-azul slide-in-left">¡Sí, listo para empezar!
+                🚀</button>
+        </div>
+    </div>
+
+    <!-- Video 04 -->
+    <div id="video-screen-04" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-video-04" class="course-video">
+            <source src="videos/video04.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+    <!-- Video 05 -->
+    <div id="video-screen-05" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-video-05" class="course-video">
+            <source src="videos/video05.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+    <!-- Interactivo 10 -->
+    <div id="interactive-screen-10" class="screen hidden">
+
+
+        <!-- Cuadro de texto -->
+        <div id="cuadro_texto" class="container text-focus-in">
+            <h1 id="titulo-caja-texto" class="title-cuadro-texto"></h1>
+            <p id="pregunta-caja-texto" class="question"></p>
+            <textarea id="text_area" type="text" class="text-input"
+                placeholder="Escribe aquí tu respuesta..."></textarea>
+            <div class="button-container">
+                <button id="btn_anterior_10_2" class="scale-in-center btn ant">Anterior</button>
+                <button id="btn_anterior_10_3" class="scale-in-center btn ant">Anterior</button>
+                <button id="btn_anterior_10_4" class="scale-in-center btn ant">Anterior</button>
+                <button id="btn_next_10_1" class="scale-in-center btn sig">Siguiente</button>
+                <button id="btn_next_10_2" class="scale-in-center btn sig">Siguiente</button>
+                <button id="btn_next_10_3" class="scale-in-center btn sig">Siguiente</button>
+                <button id="btn_next_10_4" class="scale-in-center btn sig">Siguiente</button>
+            </div>
+        </div>
+        <audio id="audioQuestion10_01" src="audios/audio10_01.mp3"></audio>
+        <audio id="audioQuestion10_02" src="audios/audio10_02.mp3"></audio>
+        <audio id="audioQuestion10_03" src="audios/audio10_03.mp3"></audio>
+        <audio id="audioQuestion10_04" src="audios/audio10_04.mp3"></audio>
+    </div>
+
+    <!-- Video 06 -->
+    <div id="video-screen-06" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-video-06" class="course-video">
+            <source src="videos/video06.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+    <!-- Interactivo 11 -->
+    <div id="interactive-screen-11" class="screen hidden">
+
+
+        <!-- Cuadro de texto -->
+        <div id="cuadro_texto_11" class="container text-focus-in">
+            <h1 id="titulo-caja-texto_11" class="title-cuadro-texto"></h1>
+            <p id="pregunta-caja-texto_11" class="question"></p>
+            <textarea id="text_area_11" type="text" class="text-input"
+                placeholder="Escribe aquí tu respuesta..."></textarea>
+            <div class="button-container">
+                <button id="btn_anterior_11_2" class="scale-in-center btn ant">Anterior</button>
+                <button id="btn_anterior_11_3" class="scale-in-center btn ant">Anterior</button>
+                <button id="btn_anterior_11_4" class="scale-in-center btn ant">Anterior</button>
+                <button id="btn_next_11_1" class="scale-in-center btn sig">Siguiente</button>
+                <button id="btn_next_11_2" class="scale-in-center btn sig">Siguiente</button>
+                <button id="btn_next_11_3" class="scale-in-center btn sig">Siguiente</button>
+                <button id="btn_next_11_4" class="scale-in-center btn sig">Siguiente</button>
+            </div>
+        </div>
+
+        <audio id="audioQuestion11_01" src="audios/audio11_01.mp3"></audio>
+        <audio id="audioQuestion11_02" src="audios/audio11_02.mp3"></audio>
+        <audio id="audioQuestion11_03" src="audios/audio11_03.mp3"></audio>
+        <audio id="audioQuestion11_04" src="audios/audio11_04.mp3"></audio>
+    </div>
+
+    <!-- Video 07 -->
+    <div id="video-screen-07" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-video-07" class="course-video">
+            <source src="videos/video07.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+    <!-- Interactivo 12 -->
+    <div id="interactive-screen-12" class="screen hidden">
+        <audio id="audioQuestion12" src="audios/audio12.mp3"></audio>
+        <audio id="audioRespuesta12" src="audios/respuesta12.mp3"></audio>
+        <div class="container-pregunta noselect">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+                <div id="card-pregunta">
+                    <h2 class="text-focus-in">Reflexionar sobre dónde enfocas tu atención puede transformar la manera en
+                        que interactúas. ¿Qué prefieres observar: el comportamiento o el carácter?</h2>
+                </div>
+            </div>
+        </div>
+        <div class="opciones">
+            <button class="option-button-12 scale-in-center button-opciones-azul slide-in-left">Comportamiento</button>
+            <button class="option-button-12 scale-in-center button-opciones-azul slide-in-right">Carácter</button>
+        </div>
+    </div>
+
+    <!-- Interactivo 13 -->
+    <div id="interactive-screen-13" class="screen hidden">
+        <audio id="audioQuestion13" src="audios/audio13.mp3"></audio>
+        <audio id="audioRespuesta13" src="audios/respuesta13.mp3"></audio>
+        <div class="container-pregunta noselect">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+                <div id="card-pregunta">
+                    <h2 class="text-focus-in">La forma en que expresas tus emociones puede cambiar el impacto de tus
+                        palabras. ¿Te atreves a ser auténtico al compartir lo que sientes frente a los comportamientos
+                        de los demás?</h2>
+                </div>
+            </div>
+        </div>
+        <div class="opciones">
+            <button class="option-button-13 scale-in-center button-opciones-azul slide-in-left">Me permito expresar
+                emociones y
+                sentimientos</button>
+            <button class="option-button-13 scale-in-center button-opciones-azul slide-in-right">Me cuesta mucho
+                expresar lo que siento
+                y pienso</button>
+        </div>
+    </div>
+
+    <!-- Interactivo 14 -->
+    <div id="interactive-screen-14" class="screen hidden">
+        <audio id="audioQuestion14" src="audios/audio14.mp3"></audio>
+        <audio id="audioRespuesta14" src="audios/respuesta14.mp3"></audio>
+        <div class="container-pregunta noselect">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+                <div id="card-pregunta">
+                    <h2 class="text-focus-in">Ser claro y directo facilita el entendimiento. ¿Cómo prefieres
+                        comunicarte: de forma directa o dando rodeos?</h2>
+                </div>
+            </div>
+        </div>
+        <div class="opciones">
+            <button class="option-button-14 scale-in-center button-opciones-azul slide-in-left">Me gusta decir las cosas
+                sin
+                rodeos</button>
+            <button class="option-button-14 scale-in-center button-opciones-azul slide-in-right">Prefiero andar un poco
+                por las
+                ramas</button>
+        </div>
+    </div>
+
+    <!-- Video 08 -->
+    <div id="video-screen-08" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-video-08" class="course-video">
+            <source src="videos/video08.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+    <!-- Interactivo 15 -->
+    <div id="interactive-screen-15" class="screen hidden">
+
+        <!-- Cuadro de texto -->
+        <div id="cuadro_texto_15" class="container text-focus-in">
+            <h1 id="titulo-caja-texto_15" class="title-cuadro-texto"></h1>
+            <p id="pregunta-caja-texto_15" class="question"></p>
+            <textarea id="text_area_15" type="text" class="text-input"
+                placeholder="Escribe aquí tu respuesta..."></textarea>
+            <div class="button-container">
+                <button id="btn_anterior_15_2" class="scale-in-center btn ant">Anterior</button>
+                <button id="btn_anterior_15_3" class="scale-in-center btn ant">Anterior</button>
+                <button id="btn_anterior_15_4" class="scale-in-center btn ant">Anterior</button>
+                <button id="btn_anterior_15_5" class="scale-in-center btn ant">Anterior</button>
+                <button id="btn_next_15_1" class="scale-in-center btn sig">Siguiente</button>
+                <button id="btn_next_15_2" class="scale-in-center btn sig">Siguiente</button>
+                <button id="btn_next_15_3" class="scale-in-center btn sig">Siguiente</button>
+                <button id="btn_next_15_4" class="scale-in-center btn sig">Siguiente</button>
+                <button id="btn_next_15_5" class="scale-in-center btn sig">Siguiente</button>
+            </div>
+        </div>
+        <audio id="audioQuestion15_01" src="audios/audio15_01.mp3"></audio>
+        <audio id="audioQuestion15_02" src="audios/audio15_02.mp3"></audio>
+        <audio id="audioQuestion15_03" src="audios/audio15_03.mp3"></audio>
+        <audio id="audioQuestion15_04" src="audios/audio15_04.mp3"></audio>
+        <audio id="audioQuestion15_05" src="audios/audio15_05.mp3"></audio>
+    </div>
+
+    <!-- Video 09 -->
+    <div id="video-screen-09" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-video-09" class="course-video">
+            <source src="videos/video09.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+    <!-- Caso de uso 01 -->
+    <div id="caso-uso-01" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-caso-01" class="course-video">
+            <source src="videos/caso01.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+    <!-- Interactivo 16 -->
+    <div id="interactive-screen-16" class="screen hidden">
+        <audio id="audioQuestion16" src="audios/audio16.mp3"></audio>
+        <div class="container-pregunta noselect">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+                <div id="card-pregunta">
+                    <h2 class="text-focus-in">¡Genial! El primer paso de la técnica del sándwich es la declaración
+                        positiva.
+                        Presiona el botón para ver la declaración positiva.
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="opciones">
+            <button class="option-button-16 scale-in-center button-opciones-azul slide-in-left">Declaración positiva
+                🚀</button>
+        </div>
+    </div>
+
+    <!-- Respuesta 01 -->
+    <div id="respuesta-01" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-respuesta-01" class="course-video">
+            <source src="videos/caso01_respuesta01.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+    <!-- Interactivo 17 -->
+    <div id="interactive-screen-17" class="screen hidden">
+        <audio id="audioQuestion17" src="audios/audio17.mp3"></audio>
+        <div class="container-pregunta noselect">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+                <div id="card-pregunta">
+                    <h2 class="text-focus-in">Perfecto. Ahora, el segundo paso de la técnica del sándwich es la crítica
+                        constructiva.
+                        Presiona el botón para ver la crítica constructiva.
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="opciones">
+            <button class="option-button-17 scale-in-center button-opciones-azul slide-in-left">Crítica constructiva
+                🌟</button>
+        </div>
+    </div>
+
+    <!-- Respuesta 02 -->
+    <div id="respuesta-02" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-respuesta-02" class="course-video">
+            <source src="videos/caso01_respuesta02.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+    <!-- Interactivo 18 -->
+    <div id="interactive-screen-18" class="screen hidden">
+        <audio id="audioQuestion18" src="audios/audio18.mp3"></audio>
+        <div class="container-pregunta noselect">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+                <div id="card-pregunta">
+                    <h2 class="text-focus-in">Finalmente, el tercer y último paso de la técnica del sándwich es la
+                        gratitud.
+                        Presiona el botón para visualizarla.
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="opciones">
+            <button class="option-button-18 scale-in-center button-opciones-azul slide-in-left">Gratitud 🤝</button>
+        </div>
+    </div>
+
+    <!-- Respuesta 03 -->
+    <div id="respuesta-03" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-respuesta-03" class="course-video">
+            <source src="videos/caso01_respuesta03.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+    <!-- Caso de uso 02 -->
+    <div id="caso-uso-02" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-caso-02" class="course-video">
+            <source src="videos/caso02.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+    <!-- Interactivo 19 -->
+    <div id="interactive-screen-19" class="screen hidden">
+        <audio id="audioQuestion19" src="audios/audio19.mp3"></audio>
+        <audio id="audioQuestion19_1" src="audios/audio19_1.mp3"></audio>
+        <div class="game-container text-focus-in">
+            <h2 class="game-title title-cuadro-texto">Ahora es tú turno. Marca el orden por donde iniciarías el
+                feedback.</h2>
+            <div id="container">
+                <div id="drag1" class="draggable" onclick="selectBlock(this)" data-order="3">Gratitud</div>
+                <div id="drag2" class="draggable" onclick="selectBlock(this)" data-order="2">Crítica constructiva</div>
+                <div id="drag3" class="draggable" onclick="selectBlock(this)" data-order="1">Declaración positiva</div>
+            </div>
+            <button id="verificar" class="option-button-19 scale-in-center button-opciones-azul"
+                onclick="checkOrder()">Verificar Orden</button>
+        </div>
+    </div>
+
+    <!-- Respuesta Caso de uso 02 -->
+    <div id="respuesta-caso-uso-02" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-respuesta-caso-02" class="course-video">
+            <source src="videos/caso02-repuesta.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+    <!-- Caso de uso 03 -->
+    <div id="caso-uso-03" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-caso-03" class="course-video">
+            <source src="videos/caso03.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+    <!-- Interactivo 20 -->
+    <div id="interactive-screen-20" class="screen hidden">
+        <audio id="audioQuestion20" src="audios/audio20.mp3"></audio>
+        <audio id="audioQuestion20_1" src="audios/audio20_1.mp3"></audio>
+        <div class="container-pregunta int-19 noselect option" id="option1" onclick="checkAnswer(this, false)">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+                <div id="card-pregunta" class="card-pregunta">
+                    <h2 class="text-focus-in h2-19">Opcion 1.- Jorge, compañero, hemos notado que registraste a un
+                        proveedor con la documentación incompleta. Creo que podrías estar distraído en algunas de tus
+                        actividades. Si quieres conservar tu posición y evitar que tengamos que informar de esto a
+                        nuestro líder, es importante que te enfoques y prestes atención a los detalles.</h2>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container-pregunta int-19 noselect option" id="option2" onclick="checkAnswer(this, true)">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+                <div id="card-pregunta" class="card-pregunta">
+                    <h2 class="text-focus-in h2-19">Opcion 2.- Jorge, compañero, he notado un gran avance desde que
+                        recibiste el feedback del líder y estoy seguro de que todo el equipo está contento con tu
+                        progreso. A mí también me alegra, porque aprendo mucho de tu proactividad. Sin embargo,
+                        considero que en algunas ocasiones podrías prestar más atención a ciertos detalles o contar
+                        conmigo para procesos en los que creas que puedo ser de ayuda. Hace dos días registraste a un
+                        proveedor sin la documentación completa, lo cual podría tener repercusiones serias. Recuerda que
+                        somos un equipo y estoy aquí para apoyarte en lo que necesites.</h2>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container-pregunta int-19 noselect option" id="option3" onclick="checkAnswer(this, false)">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+                <div id="card-pregunta" class="card-pregunta">
+                    <h2 class="text-focus-in h2-19">Opcion 3.-Jorge, hemos visto que has venido dando resultados
+                        positivos. Sin embargo, estamos incómodos porque hace dos días te equivocaste terriblemente en
+                        un proceso. Por ello, vamos a tener que reconsiderar tu permanencia en el equipo. Aunque te has
+                        destacado por tu atención a los detalles, no podemos permitir un error como el que cometiste.
+                        Pronto te daremos noticias.</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video 10 -->
+    <div id="video-screen-10" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-video-10" class="course-video">
+            <source src="videos/video10.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+    <!-- Caso de uso 04 -->
+    <div id="caso-uso-04" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-caso-04" class="course-video">
+            <source src="videos/caso04.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+
+    <!-- Interactivo 21 -->
+    <div id="interactive-screen-21" class="screen hidden">
+        <audio id="audioQuestion21" src="audios/audio21.mp3"></audio>
+        <div class="container-21">
+            <div class="feedback-section">
+                <p id="feedback-text">
+                    <span class="part" data-part="Situación">Paco, compañero, quería comentarte que estas semanas nos ha
+                        tocado revisar los reportes ingresados al software, hemos visualizado que hay data faltante en 3
+                        criterios específicos, que fueron registrados durante su guardia.</span>
+                    <span class="part" data-part="Comportamiento">Considero que las capacitaciones que hemos venido
+                        recibiendo de los especialistas y el líder nos ayudaron a absolver dudas. Sin embargo, hemos
+                        preguntado al equipo si necesitan nuevamente espacio para capacitación del software y no hemos
+                        tenido aún respuesta de todo su equipo. Por ello, me parece importante que coordinemos cada
+                        semana para tener una revisión puntual de los reportes y capacitar a nuestros equipos de forma
+                        quincenal.</span>
+                    <span class="part" data-part="Impacto">Este último informe ha tenido algunos cambios por la data
+                        faltante, recordemos que esos informes tienen un impacto en la toma de decisiones y en las
+                        nuevas aprobaciones de presupuesto de nuestro líder. Por todo ello, cuenta conmigo cuando
+                        necesites de apoyo en detalles específicos.</span>
+                </p>
+            </div>
+
+            <div class="buttons-21">
+                <button class="button-21" style="background-color: rgba(204, 0, 255)"
+                    onclick="highlight('Situación')">Situación</button>
+                <button class="button-21" style="background-color: rgba(0, 255, 242);color: black;"
+                    onclick="highlight('Comportamiento')">Comportamiento</button>
+                <button class="button-21" style="background-color: rgba(0, 0, 255);"
+                    onclick="highlight('Impacto')">Impacto</button>
+            </div>
+
+            <div id="message"></div>
+            <div class="opciones">
+                <button class="option-button-21 scale-in-center button-opciones-azul slide-in-left">Continuar
+                    🚀</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Caso 4 Respuesta 1 -->
+    <div id="video-screen-caso-4-1" transition-style="in:circle:hesitate" class="screen hidden">
+        <audio id="audioQuestion22" src="audios/audio22.mp3"></audio>
+        <video id="course-caso-4-1" class="course-video">
+            <source src="videos/caso04_respuesta01.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+        <!-- Contenedor de botones con diseño Material UI -->
+        <div id="buttonContainercaso41" class="button-container-caso4">
+            <button id="caso4_respuesta1">Situación (¿Quiénes estuvieron involucrados, ¿qué ocurrió, dónde, cuándo y
+                cuántas veces?)</button>
+            <button>Consecuencias y/o comportamientos (que consecuencias ocurrieron a raíz de dicha situación y que
+                acciones te gustaría que sucedan para mejorar dicha situación)</button>
+            <button>Impacto (cómo afecta dicha situación)</button>
+        </div>
+    </div>
+
+    <!-- Caso 4 Respuesta 2 -->
+    <div id="video-screen-caso-4-2" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-caso-4-2" class="course-video">
+            <source src="videos/caso04_respuesta02.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+        <!-- Contenedor de botones con diseño Material UI -->
+        <div id="buttonContainercaso42" class="button-container-caso4">
+            <button>Situación (¿Quiénes estuvieron involucrados, ¿qué ocurrió, dónde, cuándo y cuántas veces?)</button>
+            <button id="caso4_respuesta2">Consecuencias y/o comportamientos (que consecuencias ocurrieron a raíz de
+                dicha situación y que acciones te gustaría que sucedan para mejorar dicha situación)</button>
+            <button>Impacto (cómo afecta dicha situación)</button>
+        </div>
+    </div>
+
+    <!-- Caso 4 Respuesta 3 -->
+    <div id="video-screen-caso-4-3" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-caso-4-3" class="course-video">
+            <source src="videos/caso04_respuesta03.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+        <!-- Contenedor de botones con diseño Material UI -->
+        <div id="buttonContainercaso43" class="button-container-caso4">
+            <button>Situación (¿Quiénes estuvieron involucrados, ¿qué ocurrió, dónde, cuándo y cuántas veces?)</button>
+            <button>Consecuencias y/o comportamientos (que consecuencias ocurrieron a raíz de dicha situación y que
+                acciones te gustaría que sucedan para mejorar dicha situación)</button>
+            <button id="caso4_respuesta3">Impacto (cómo afecta dicha situación)</button>
+        </div>
+    </div>
+
+    <!-- Video 11 -->
+    <div id="video-screen-11" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-video-11" class="course-video">
+            <source src="videos/video11.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+    <!-- Interactivo 24 -->
+    <div id="interactive-screen-24" class="screen hidden">
+        <div class="container-estrellas">
+            <div id="question-container">
+                <div class="question-estrellas" id="question">Se sabe lo que se quiere lograr al dar retroalimentación.
+                </div>
+                <div class="stars">
+                    <!-- Estrellas con valores de 1 a 5 -->
+                    <span class="star" data-value="1">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="5">★</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Elemento de audio oculto -->
+        <audio id="audioPlayer24"></audio>
+    </div>
+
+    <!-- Video 12 -->
+    <div id="video-screen-12" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-video-12" class="course-video">
+            <source src="videos/video12.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+    <!-- Interactivo 25 -->
+    <div id="interactive-screen-25" class="screen hidden">
+        <audio id="audioQuestion25" src="audios/audio25.mp3"></audio>
+        <audio id="audioRespuesta25" src="audios/respuesta25.mp3"></audio>
+        <div class="container-pregunta noselect">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+                <div id="card-pregunta">
+                    <h2 class="text-focus-in">Los grandes cambios comienzan con pequeños hábitos. ¿Qué te detiene para
+                        incorporar el feedback como parte de tu crecimiento diario?</h2>
+                </div>
+            </div>
+        </div>
+        <div class="opciones">
+            <button class="option-button-25 scale-in-center button-opciones-azul slide-in-left">¡Estoy listo para
+                comenzar y mejorar
+                continuamente! 💪✨</button>
+        </div>
+    </div>
+
+    <!-- Video 13 -->
+    <div id="video-screen-13" transition-style="in:circle:hesitate" class="screen hidden">
+        <video id="course-video-13" class="course-video">
+            <source src="videos/video13.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+    <!-- Interactivo 26 -->
+    <div id="interactive-screen-26" class="screen hidden">
+        <audio id="audioQuestion26" src="audios/audio26.mp3"></audio>
+        <audio id="audioRespuesta26" src="audios/respuesta26.mp3"></audio>
+        <div class="container-pregunta noselect">
+            <div class="canvas">
+                <div class="tracker tr-1"></div>
+                <div class="tracker tr-2"></div>
+                <div class="tracker tr-3"></div>
+                <div class="tracker tr-4"></div>
+                <div class="tracker tr-5"></div>
+                <div class="tracker tr-6"></div>
+                <div class="tracker tr-7"></div>
+                <div class="tracker tr-8"></div>
+                <div class="tracker tr-9"></div>
+                <div class="tracker tr-10"></div>
+                <div class="tracker tr-11"></div>
+                <div class="tracker tr-12"></div>
+                <div class="tracker tr-13"></div>
+                <div class="tracker tr-14"></div>
+                <div class="tracker tr-15"></div>
+                <div class="tracker tr-16"></div>
+                <div class="tracker tr-17"></div>
+                <div class="tracker tr-18"></div>
+                <div class="tracker tr-19"></div>
+                <div class="tracker tr-20"></div>
+                <div class="tracker tr-21"></div>
+                <div class="tracker tr-22"></div>
+                <div class="tracker tr-23"></div>
+                <div class="tracker tr-24"></div>
+                <div class="tracker tr-25"></div>
+                <div id="card-pregunta">
+                    <h2 class="text-focus-in">¡Bien! 🌟 "Aceptar un reto es un acto de valentía y crecimiento. ¿Estás
+                        listo para asumir este desafío y dar lo mejor de ti?" 🌟</h2>
+                </div>
+            </div>
+        </div>
+        <div class="opciones">
+            <button class="option-button-26 scale-in-center button-opciones-azul slide-in-left">¡Claro que sí!
+                🚀✨</button>
+        </div>
+    </div>
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>
