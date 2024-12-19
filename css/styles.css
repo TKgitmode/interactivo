@@ -1,0 +1,915 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  font-family: "AA Smart Sans";
+  overflow: hidden;
+}
+
+/* Background imagen */
+
+#background-image {
+  margin: 0; /* Eliminar márgenes */
+  padding: 0; /* Eliminar relleno */
+  background-image: url("../img/fondo.png"); /* Ruta de tu imagen */
+  background-size: cover; /* Abarca toda la pantalla */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que se repita */
+  height: 100vh; /* Altura completa de la ventana */
+  width: 100vw; /* Ancho completo de la ventana */
+  z-index: 1;
+}
+
+/* General */
+
+h2 {
+  margin: 0 6rem;
+}
+
+.screen {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  /* Coloca los elementos en una columna */
+  justify-content: center;
+  /* Centra los elementos verticalmente */
+  align-items: center;
+  /* Centra los elementos horizontalmente */
+  text-align: center;
+  /* Centra el texto */
+}
+
+.hidden {
+  display: none !important;
+}
+
+.green-button {
+  background: green !important;
+  color: white !important;
+  border: none !important;
+  outline: none !important;
+  transition: background-color 0.3s ease !important;
+}
+
+/* Botón para mutear */
+.mute-button {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(to right, #351ee0, #031795); /* Degradado */
+  border: none;
+  border-radius: 50%; /* Forma circular */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Para que siempre esté encima */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animación al hacer hover */
+}
+
+/* Animación al hacer hover */
+.mute-button:hover {
+  transform: scale(1.1); /* Aumenta el tamaño ligeramente */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Icono dentro del botón */
+.mute-button img {
+  width: 80%; /* Ajusta el tamaño del icono dentro del círculo */
+  height: 80%;
+  object-fit: contain;
+  transition: transform 0.3s ease; /* Animación para el cambio del icono */
+}
+
+/* Animación de cambio de icono */
+.mute-button img.change {
+  transform: rotate(360deg); /* Gira el icono al cambiar */
+}
+
+/* Contenedor del video */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.background-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Asegura que el video cubra la pantalla sin distorsionar */
+  transform: translate(-50%, -50%);
+  /* Centra el video */
+}
+
+@media (max-width: 1050px) {
+  h2 {
+    margin: 0 1rem;
+    margin-top: 1rem !important;
+  }
+}
+
+.text-focus-in {
+  -webkit-animation: text-focus-in 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+    both;
+  animation: text-focus-in 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+}
+
+@-webkit-keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+.scale-in-center {
+  -webkit-animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@-webkit-keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes circle-in-hesitate {
+  0% {
+    clip-path: circle(0%);
+  }
+
+  40% {
+    clip-path: circle(40%);
+  }
+
+  100% {
+    clip-path: circle(125%);
+  }
+}
+
+[transition-style="in:circle:hesitate"] {
+  animation: 2.5s cubic-bezier(0.25, 1, 0.3, 1) circle-in-hesitate both;
+}
+
+/* Progress bar */
+
+#progress-bar-container {
+  z-index: 1000;
+  position: absolute;
+  bottom: 2vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.steps {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 22rem;
+}
+
+.step {
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border: 2px solid #acaca6;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 1s;
+}
+
+.step.selected {
+  border: 2px solid #351ee0;
+}
+
+.step.completed {
+  border: 2px solid #351ee0;
+  background: #351ee0;
+}
+
+.progress {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  border-bottom: 2px solid #acaca6;
+  z-index: -1;
+}
+
+.percent {
+  position: absolute;
+  width: 0;
+  height: 100%;
+  border-bottom: 2px solid #351ee0;
+  z-index: 1;
+  transition: width 1s;
+}
+
+/* Contador */
+
+.contador {
+  display: none;
+  font-size: 1.3rem;
+  color: #031795;
+  position: absolute;
+  z-index: 10000;
+  background: white;
+  top: 2rem;
+  right: 2rem;
+  padding: 0.5rem;
+  border-radius: 25%;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.12);
+}
+
+/* Vista entrada */
+
+#start-screen {
+  z-index: 2;
+  display: flex;
+}
+
+@keyframes fancy-scale-in {
+  0% {
+    transform: scale(1.5) rotate(-15deg);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.1) rotate(5deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.fancy-scale-in {
+  animation: fancy-scale-in 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) both;
+}
+
+/* Aparecer desde la izquierda */
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-left {
+  animation: slide-in-left 0.8s ease-out both;
+}
+
+/* Aparecer desde la derecha */
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-right {
+  animation: slide-in-right 0.8s ease-out both;
+}
+
+/* Fade In desde abajo */
+@keyframes fade-in-up {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.fade-in-up {
+  animation: fade-in-up 0.8s ease-out both;
+}
+
+#container-moving {
+  position: absolute; /* Se coloca encima de otros elementos */
+  width: 95%; /* Ocupa todo el ancho */
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  z-index: 99; /* Asegura que esté visible sobre otros elementos */
+}
+
+#forward {
+  color: white;
+  padding: 10px 20px;
+  z-index: 99;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(to right, #351ee0, #031795);
+  border: none;
+  border-radius: 50%;
+}
+
+#back {
+  color: white;
+  padding: 10px 20px;
+  z-index: 99;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(to right, #351ee0, #031795);
+  border: none;
+  border-radius: 50%;
+}
+
+/* Opcional: Agregar animación al pasar el mouse */
+#forward:hover {
+  border-bottom-color: #0056b3; /* Cambia el color al pasar el mouse */
+  transform: scale(1.1); /* Aumenta el tamaño ligeramente */
+  transition: transform 0.2s ease, border-bottom-color 0.2s ease;
+  cursor: pointer;
+}
+
+/* Opcional: Agregar animación al pasar el mouse */
+#back:hover {
+  border-bottom-color: #0056b3; /* Cambia el color al pasar el mouse */
+  transform: scale(1.1); /* Aumenta el tamaño ligeramente */
+  transition: transform 0.2s ease, border-bottom-color 0.2s ease;
+  cursor: pointer;
+}
+
+.button-opciones {
+  margin: 0 1rem 1rem;
+  padding: 1rem 2rem;
+  font-size: 1.3rem;
+  border-radius: 20px;
+  background: linear-gradient(to right, #351ee0, #031795);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  /*animation: fancy-scale-in 0.8s ease-in-out;*/
+}
+
+.button-opciones-azul {
+  margin: 0 1rem 1rem;
+  padding: 1rem 2rem;
+  font-size: 1.3rem;
+  border-radius: 20px;
+  background: linear-gradient(to right, #351ee0, #031795);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  /* Suaviza las transiciones */
+}
+
+.button-sin-hover {
+  box-shadow: 2px 2px 0px white,
+    /* Sombra blanca en la parte inferior derecha */ inset -1px -1px 0px
+      rgba(0, 0, 0, 0.2);
+  margin: 0 1rem 1rem;
+  padding: 1rem 2rem;
+  font-size: 1.3rem;
+  border-radius: 20px;
+  background: linear-gradient(to right, #351ee0, #031795);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  /* Suaviza las transiciones */
+}
+
+@media (max-width: 1050px) {
+  .texto_principal {
+    display: none;
+  }
+
+  .contador {
+    font-size: 1rem;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  p {
+    font-size: 0.8rem;
+  }
+
+  .button-opciones {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .button-opciones-azul {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .button-sin-hover {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Efecto hover: aplicar blur al otro botón */
+.opciones:hover .button-opciones:hover {
+  transform: scale(1.07);
+  /* Agranda un poco el botón */
+  filter: none;
+  /* Mantener claro el botón hover */
+}
+
+/* Efecto hover: aplicar blur al otro botón */
+.opciones:hover .button-opciones:not(:hover) {
+  filter: blur(5px);
+  opacity: 0.7;
+}
+
+/* Efecto de agrandamiento cuando se presiona */
+.button-opciones:active {
+  transform: scale(1.05);
+  /* Agranda un poco el botón */
+}
+
+/* Efecto hover: aplicar blur al otro botón */
+.opciones:hover .button-opciones-azul:hover {
+  transform: scale(1.07);
+  /* Agranda un poco el botón */
+  filter: none;
+  /* Mantener claro el botón hover */
+}
+
+/* Efecto hover: aplicar blur al otro botón */
+.opciones:hover .button-opciones-azul:not(:hover) {
+  filter: blur(5px);
+  opacity: 0.7;
+}
+
+/* Efecto de agrandamiento cuando se presiona */
+.button-opciones-azul:active {
+  transform: scale(1.05);
+  /* Agranda un poco el botón */
+}
+
+/* Video */
+
+.course-video {
+  width: 100%;
+  height: 100%;
+}
+
+/* Cuadro de texto */
+
+.container {
+  display: none;
+  z-index: 1000;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  max-width: 30rem;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.title-cuadro-texto {
+  color: #031795;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.question {
+  color: #031795;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.text-input {
+  width: 90%;
+  padding: 0.8rem;
+  border-radius: 5px;
+  border: 1px solid #ffffff;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  /* Centra el texto y el placeholder */
+  transition: border-color 0.3s ease;
+  /* Transición suave del borde */
+  resize: none;
+  /* Desactiva la capacidad de redimensionar el textarea */
+}
+
+.text-input::placeholder {
+  font-style: italic;
+  /* Hace el placeholder en cursiva */
+  color: #888;
+  /* Cambia el color del placeholder si lo deseas */
+}
+
+.text-input:focus {
+  border-color: #aaa;
+  /* Borde gris delgado cuando está en foco */
+  outline: none;
+  /* Elimina el borde azul por defecto */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn {
+  display: none;
+  border: 2px solid #031795;
+  font-weight: 600;
+  padding: 0.8rem 2rem;
+  border-radius: 2rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ant {
+  background-color: #ffffff;
+  color: #031795;
+}
+
+.ant:hover {
+  background-color: #031795;
+  color: white;
+}
+
+.sig {
+  background-color: #031795;
+  color: white;
+}
+
+.sig:hover {
+  background-color: #ffffff;
+  color: #031795;
+}
+
+/* Interactivo 19 */
+
+.game-container {
+  z-index: 9999;
+  text-align: center;
+  width: auto;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.game-title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Estilos de los bloques de arrastre */
+#container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.draggable {
+  padding: 0 1rem;
+  width: max-content;
+  height: 80px;
+  background-color: #ffffff;
+  color: #031795;
+  text-align: center;
+  line-height: 80px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: grab;
+  border: 2px dashed #031795;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+}
+
+.draggable:hover {
+  background-color: #303f9f !important;
+  color: #ffffff !important;
+}
+
+/* Estilos de la zona de drop */
+#dropzone {
+  min-width: 20rem;
+  width: fit-content;
+  height: 120px;
+  margin: 0 auto;
+  border: 2px dashed #3f51b5;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px;
+  color: #3f51b5;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+#dropzone p {
+  margin: 0;
+  font-size: 16px;
+}
+
+#dropzone.drag-over {
+  background-color: #e3f2fd;
+}
+
+/* Estilos generales omitidos por brevedad */
+
+.notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4caf50;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  text-align: center;
+  z-index: 1000;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.notification.show {
+  display: block;
+  opacity: 1;
+}
+
+.int-19 {
+  height: 20vh !important;
+}
+
+.h2-19 {
+  font-size: 2vh;
+}
+
+/* Interactivo 21 */
+.container-21 {
+  width: 90%;
+  max-width: 100rem;
+  text-align: center;
+}
+
+.feedback-section {
+  background-color: #ffffffa6;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 2vh;
+}
+
+.feedback-section p {
+  text-align: justify;
+  margin: 0;
+  font-size: calc(1vh + 0.7vw);
+}
+
+.buttons-21 .button-21 {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 20px;
+  transition: background-color 0.3s;
+}
+
+.buttons-21 .button-21:hover {
+  background-color: #0056b3;
+}
+
+.highlighted-red {
+  background-color: rgba(204, 0, 255, 0.3);
+  font-weight: bold;
+  transition: background-color 0.5s ease;
+}
+
+.highlighted-green {
+  background-color: rgba(0, 255, 242, 0.3);
+  font-weight: bold;
+  transition: background-color 0.5s ease;
+}
+
+.highlighted-blue {
+  background-color: rgba(0, 0, 255, 0.3);
+  font-weight: bold;
+  transition: background-color 0.5s ease;
+}
+
+#message {
+  font-size: calc(1vh + 0.5vw);
+  margin-top: 2vh;
+}
+/* Contenedor de los botones */
+.button-container-caso4 {
+  position: absolute;
+  right: -150px;
+  /* Posición inicial fuera de la pantalla */
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease, right 0.5s ease;
+  /* Transición suave */
+}
+
+/* Estilo de los botones para un diseño de Material UI */
+.button-container-caso4 button {
+  width: 20vw;
+  padding: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+  background-color: #351ee0;
+  color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  font-size: calc(1vh + 0.7vw);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Efecto hover para los botones */
+.button-container-caso4 button:hover {
+  background-color: #3700b3;
+  transform: translateY(-2px);
+}
+
+/* Clase para mostrar los botones con la animación */
+.show-buttons {
+  right: 10px;
+  /* Posición final de los botones en la pantalla */
+  opacity: 1;
+}
+
+/* Interactivo 24 */
+
+/* Contenedor principal */
+.container-estrellas {
+  text-align: center;
+  width: 50%;
+  padding: 1.5rem;
+  background-color: hsl(0deg 0% 100% / 41%);
+  box-shadow: 0px 4px 8px rgb(255 255 255 / 20%);
+  border-radius: 8px;
+  color: #031795;
+  font-weight: bold;
+}
+
+/* Pregunta */
+.question-estrellas {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Estrellas */
+.stars {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.star {
+  font-size: 2em;
+  color: #ddd;
+  transition: color 0.3s;
+}
+
+.star.selected {
+  color: #031795;
+}
+
+@media (max-width: 1050px) {
+  /* Pregunta */
+  .question-estrellas {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  .feedback-section p {
+    font-size: calc(1vh + 1vw);
+  }
+
+  #message {
+    font-size: calc(1vh + 1vw);
+  }
+
+  .container {
+    padding: 1rem;
+    max-width: 29rem;
+    margin-top: -2rem;
+  }
+
+  .title-cuadro-texto {
+    font-size: 1.3rem;
+  }
+
+  .question {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .text-input {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .int-19 {
+    height: 30vh !important;
+  }
+
+  .h2-19 {
+    font-size: calc(1vh + 1vw);
+  }
+}

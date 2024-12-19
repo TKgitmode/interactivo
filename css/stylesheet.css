@@ -1,0 +1,40 @@
+
+@font-face {
+    font-family: 'AA Smart Sans';
+    src: url('fonts/AASmartSans-Thin.eot');
+    src: local('AA Smart Sans Thin'), local('AASmartSans-Thin'),
+        url('fonts/AASmartSans-Thin.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AASmartSans-Thin.woff2') format('woff2'),
+        url('fonts/AASmartSans-Thin.woff') format('woff'),
+        url('fonts/AASmartSans-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'AA Smart Sans';
+    src: url('fonts/AASmartSans-Light.eot');
+    src: local('AA Smart Sans Light'), local('AASmartSans-Light'),
+        url('fonts/AASmartSans-Light.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AASmartSans-Light.woff2') format('woff2'),
+        url('fonts/AASmartSans-Light.woff') format('woff'),
+        url('fonts/AASmartSans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'AA Smart Sans';
+    src: url('fonts/AASmartSans-Regular.eot');
+    src: local('AA Smart Sans Regular'), local('AASmartSans-Regular'),
+        url('fonts/AASmartSans-Regular.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AASmartSans-Regular.woff2') format('woff2'),
+        url('fonts/AASmartSans-Regular.woff') format('woff'),
+        url('fonts/AASmartSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
